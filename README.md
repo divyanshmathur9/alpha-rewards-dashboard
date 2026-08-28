@@ -92,7 +92,7 @@ Backend seed test: `cd backend && PYTHONPATH=. .venv/bin/pytest`.
 ### Not done
 
 - Automated coverage currently focuses on the seed path; endpoint and browser-level tests would be the next additions.
-- The insights area is a category summary rather than a full chart interaction.
+- A monthly spend-trend chart is not included; the interactive category chart is the selected analytics view.
 
 ### Known issues
 
