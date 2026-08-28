@@ -16,6 +16,13 @@ A full-stack spending and rewards dashboard built for the Digital Alpha full-sta
 - FastAPI, SQLAlchemy, PostgreSQL 18
 - Docker Compose for local PostgreSQL
 
+## Live demo
+
+- Frontend: https://alpha-rewards-dashboard.vercel.app
+- Backend API: https://alpha-rewards-api.onrender.com
+
+The backend is hosted on Render's free tier, so its first request after inactivity can take up to about a minute while the service wakes up.
+
 ## Run locally
 
 Prerequisites: Docker Desktop, Node.js 20+ and Python 3.9+.
@@ -72,8 +79,24 @@ Frontend linting: `npm --prefix frontend run lint`.
 
 Backend seed test: `cd backend && PYTHONPATH=. .venv/bin/pytest`.
 
-## Status
+## Delivery status
 
-Done: PostgreSQL schema/seed, transaction API with search/filter/pagination/sorting, analytics API, rewards validation and redemption, responsive dashboard, searchable/filterable table, spending insights, reward catalogue, and transaction details.
+### Done
 
-The supplied dataset is seeded deterministically and duplicate source IDs are preserved with stable suffixes. The application is designed for local demonstration with Docker Compose, the FastAPI server, and the Next.js server running together.
+- PostgreSQL schema and deterministic seed for all 10,000 supplied transactions
+- Server-side transaction search, combined filters, sorting, and pagination
+- Transaction details, category spend insights, and rewards balance/catalogue
+- Reward confirmation, validation, and immediate balance update
+- Responsive Next.js frontend and deployed FastAPI/PostgreSQL backend
+
+### Not done
+
+- Automated coverage currently focuses on the seed path; endpoint and browser-level tests would be the next additions.
+- The insights area is a category summary rather than a full chart interaction.
+
+### Known issues
+
+- The Render free service may take up to roughly a minute to respond after a period of inactivity.
+- Each Render redeploy runs the seed command so the demo starts from a clean, predictable dataset.
+
+The supplied dataset is seeded deterministically and duplicate source IDs are preserved with stable suffixes.
