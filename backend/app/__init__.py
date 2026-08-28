@@ -1,0 +1,2 @@
+"""Alpha Rewards API package."""
+
