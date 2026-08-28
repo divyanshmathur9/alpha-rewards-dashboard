@@ -36,13 +36,15 @@ npm run dev
 
 Open http://localhost:3000.
 
+If the API runs on a different host or port, create `frontend/.env.local` with
+`NEXT_PUBLIC_API_URL=http://your-api-host:8000` before starting Next.js.
+
 ## API
 
 `GET /api/transactions`, `GET /api/rewards/balance`, `GET /api/rewards`, `POST /api/rewards/redeem`, and `GET /api/analytics`.
 
 ## Status
 
-Done: PostgreSQL schema/seed, transaction API with search/filter/pagination/sorting, analytics API, rewards validation, responsive dashboard shell, searchable table, and transaction details.
+Done: PostgreSQL schema/seed, transaction API with search/filter/pagination/sorting, analytics API, rewards validation and redemption, responsive dashboard, searchable/filterable table, spending insights, reward catalogue, and transaction details.
 
-In progress: final visual polish, richer filter controls, reward catalogue presentation, automated tests, and deployment.
-
+The supplied dataset is seeded deterministically and duplicate source IDs are preserved with stable suffixes.
