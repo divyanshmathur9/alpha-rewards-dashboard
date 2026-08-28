@@ -3,7 +3,9 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from app.core.config import get_settings
 
-database_url = get_settings().database_url
+database_url = get_settings().database_url.strip()
+if database_url.startswith("psql "):
+    database_url = database_url.removeprefix("psql ").strip().strip("'\"")
 if database_url.startswith("postgresql://"):
     database_url = database_url.replace("postgresql://", "postgresql+psycopg://", 1)
 
