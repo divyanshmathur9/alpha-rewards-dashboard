@@ -47,14 +47,18 @@ def load_transactions() -> tuple[list[dict], int]:
 
     rows = []
     balance = 0
+    id_counts = {}
     for item in raw_items:
         amount = Decimal(str(item.get("amount", 0))).quantize(Decimal("0.01"))
         status = str(item.get("status", "PENDING")).upper()
         if status == "SUCCESS" and amount > 0:
             balance += min(int(amount // 100), COIN_CAP_PER_TRANSACTION)
+        source_id = str(item["id"])
+        id_counts[source_id] = id_counts.get(source_id, 0) + 1
+        stored_id = source_id if id_counts[source_id] == 1 else "{}-{:02d}".format(source_id, id_counts[source_id])
         rows.append(
             {
-                "id": str(item["id"]),
+                "id": stored_id,
                 "occurred_at": parse_timestamp(item.get("timestamp")),
                 "merchant": str(item.get("merchant") or "Unknown merchant").strip(),
                 "category": normalise_category(item.get("category")),
